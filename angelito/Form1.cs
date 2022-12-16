@@ -5,10 +5,12 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Renci;
+using System.Threading;
 using Renci.SshNet;
 
 namespace angelito
@@ -16,6 +18,7 @@ namespace angelito
     public partial class Form1 : Form
     {
         List<Server> L = new List<Server>();
+        string logglobal;
 
         public Form1()
         {
@@ -24,54 +27,63 @@ namespace angelito
 
         private void btniniciar_Click(object sender, EventArgs e)
         {
-            new Task(() => RunCommand()).Start();
-        }
-        public void testejecucion()
-        {
-            using (var client = new SshClient("hostnameOrIp", "username", "password"))
+            rtb.Clear();
+            logglobal = "";
+            foreach (var item in L)
             {
-
+                //new Task(() => RunCommand(item.IPP,item.USER,item.CONTR,item.COMAN)).Start();
+                RunCommand(item.IPP, item.USER, item.CONTR, item.COMAN);
+                logglobal = logglobal + rtb.Text;
+                GenerarTXT(rtb.Text, item.IPP);
+                rtb.Clear();
             }
+            MessageBox.Show("finalizado");
+            rtb.Text = logglobal;
+            
         }
 
 
 
-
-        private void RunCommand()
+        private void RunCommand(string H,string u,string p, string c)
         {
-            var host = "192.168.0.110";
-            var username = "ubuntu";
-            var password = "M64z1992";
+            var host = H;
+            var username = u;
+            var password = p;
 
-            using (var client = new SshClient(host, username, password))
+            try
             {
-                client.Connect();
-                var cmd = client.CreateCommand("whoami; ifconfig; whoami");
-
-                var result = cmd.BeginExecute();
-
-                using (var reader = new StreamReader(
-                                      cmd.OutputStream, Encoding.UTF8, true, 1024, true))
+                using (var client = new SshClient(host, username, password))
                 {
-                    while (!result.IsCompleted || !reader.EndOfStream)
+
+                    client.Connect();
+                    var cmd = client.CreateCommand(c);
+
+                    var result = cmd.BeginExecute();
+
+                    using (var reader = new StreamReader(
+                                          cmd.OutputStream, Encoding.UTF8, true, 1024, true))
                     {
-                        string line = reader.ReadLine();
-                        if (line != null)
+                        while (!result.IsCompleted || !reader.EndOfStream)
                         {
-                            rtb.Invoke(
-                                (MethodInvoker)(() =>
-                                    rtb.AppendText(line + Environment.NewLine)));
+                            string line = reader.ReadLine();
+                            if (line != null)
+                            {
+                                rtb.Invoke(
+                                    (MethodInvoker)(() =>
+                                        rtb.AppendText(line + Environment.NewLine)));
+
+                            }
                         }
                     }
+
+                    cmd.EndExecute(result);
                 }
-
-                cmd.EndExecute(result);
             }
-        }
-
-        private void textBox4_TextChanged(object sender, EventArgs e)
-        {
-
+            catch (Exception ex)
+            {
+                MessageBox.Show("Inaccesible al Host usuario o contraseña incorrecto: " + ex);
+                //throw;
+            }
         }
 
         private void btnagregar_Click(object sender, EventArgs e)
@@ -103,6 +115,29 @@ namespace angelito
             }
 
         }
+
+        public void GenerarTXT(string dat,string h)
+        {
+            
+            string texto = dat;
+
+            using (StreamWriter mylogs = new StreamWriter(Path.Combine(Application.StartupPath, h+" "+DateTime.Now.Millisecond.ToString()+" " +" log.txt"), append: true))         //se crea el archivo
+            {
+
+                //se adiciona alguna información y la fecha
+
+                mylogs.WriteLine(texto);
+
+                mylogs.Close();
+
+
+            }
+        }
+
+        private void rtb_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }//fin
     public class Server
     {
@@ -123,5 +158,7 @@ namespace angelito
         public static string passdata;
         public static string data;
     }
-    
+
+
+
 }

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "2teHTLjEfjlJvk1ie2LkJtuW8mtb0ymPsin6KZvYFr6dwD6AguwQhoX/83tu1LXrQiHf74DaPUPvgC1jObTogA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\BAGUIRRE\\source\\repos\\angelito\\angelito\\angelito.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\BAGUIRRE\\.nuget\\packages\\ssh.net\\2020.0.2\\ssh.net.2020.0.2.nupkg.sha512",
+    "C:\\Users\\BAGUIRRE\\.nuget\\packages\\sshnet.security.cryptography\\1.3.0\\sshnet.security.cryptography.1.3.0.nupkg.sha512"
+  ],
+  "logs": []
+}

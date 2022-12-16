@@ -1,0 +1,7 @@
+C:\Users\BAGUIRRE\Desktop\apps\angelito.exe
+C:\Users\BAGUIRRE\Desktop\apps\angelito.dll
+C:\Users\BAGUIRRE\Desktop\apps\angelito.deps.json
+C:\Users\BAGUIRRE\Desktop\apps\angelito.runtimeconfig.json
+C:\Users\BAGUIRRE\Desktop\apps\angelito.pdb
+C:\Users\BAGUIRRE\Desktop\apps\Renci.SshNet.dll
+C:\Users\BAGUIRRE\Desktop\apps\SshNet.Security.Cryptography.dll

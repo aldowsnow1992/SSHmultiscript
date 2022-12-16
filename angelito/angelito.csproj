@@ -4,6 +4,12 @@
     <OutputType>WinExe</OutputType>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <UseWindowsForms>true</UseWindowsForms>
+    <Version>2.0.1</Version>
+    <Company>byron corps</Company>
+    <Authors>byron corps</Authors>
+    <Description>multissh</Description>
+    <PackageIcon>ssh.ico</PackageIcon>
+    <ApplicationIcon>C:\Users\BAGUIRRE\Downloads\ssh.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -14,6 +20,13 @@
     <Reference Include="Renci.SshNet">
       <HintPath>..\..\..\..\Downloads\SSH.NET-develop\SSH.NET-develop\Renci.SshNet.dll</HintPath>
     </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\..\..\Downloads\ssh.ico">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

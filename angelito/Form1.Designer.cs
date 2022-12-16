@@ -37,6 +37,7 @@ namespace angelito
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox4 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -51,9 +52,10 @@ namespace angelito
             // 
             this.rtb.Location = new System.Drawing.Point(56, 206);
             this.rtb.Name = "rtb";
-            this.rtb.Size = new System.Drawing.Size(1142, 532);
+            this.rtb.Size = new System.Drawing.Size(1142, 732);
             this.rtb.TabIndex = 0;
             this.rtb.Text = "";
+            this.rtb.TextChanged += new System.EventHandler(this.rtb_TextChanged);
             // 
             // btniniciar
             // 
@@ -90,7 +92,7 @@ namespace angelito
             // 
             this.IPs.FormattingEnabled = true;
             this.IPs.ItemHeight = 25;
-            this.IPs.Location = new System.Drawing.Point(18, 30);
+            this.IPs.Location = new System.Drawing.Point(16, 23);
             this.IPs.Name = "IPs";
             this.IPs.Size = new System.Drawing.Size(182, 154);
             this.IPs.TabIndex = 2;
@@ -105,13 +107,14 @@ namespace angelito
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(28, 147);
+            this.textBox2.Location = new System.Drawing.Point(28, 142);
             this.textBox2.Name = "textBox2";
             this.textBox2.Size = new System.Drawing.Size(150, 31);
             this.textBox2.TabIndex = 6;
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.label4);
             this.groupBox2.Controls.Add(this.textBox4);
             this.groupBox2.Controls.Add(this.label3);
@@ -123,15 +126,25 @@ namespace angelito
             this.groupBox2.Controls.Add(this.btnagregar);
             this.groupBox2.Location = new System.Drawing.Point(56, 2);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(727, 195);
+            this.groupBox2.Size = new System.Drawing.Size(727, 198);
             this.groupBox2.TabIndex = 7;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Agregar servers";
             // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Segoe UI", 6F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.label5.Location = new System.Drawing.Point(269, 173);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(298, 15);
+            this.label5.TabIndex = 13;
+            this.label5.Text = "para mas comandos separados por ; (whoami; ifconfig)";
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(269, 114);
+            this.label4.Location = new System.Drawing.Point(265, 105);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(91, 25);
             this.label4.TabIndex = 12;
@@ -139,11 +152,10 @@ namespace angelito
             // 
             // textBox4
             // 
-            this.textBox4.Location = new System.Drawing.Point(239, 147);
+            this.textBox4.Location = new System.Drawing.Point(239, 142);
             this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(345, 31);
+            this.textBox4.Size = new System.Drawing.Size(473, 31);
             this.textBox4.TabIndex = 11;
-            this.textBox4.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
             // 
             // label3
             // 
@@ -157,7 +169,7 @@ namespace angelito
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(28, 119);
+            this.label2.Location = new System.Drawing.Point(28, 114);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(47, 25);
             this.label2.TabIndex = 9;
@@ -176,6 +188,7 @@ namespace angelito
             // 
             this.textBox3.Location = new System.Drawing.Point(239, 55);
             this.textBox3.Name = "textBox3";
+            this.textBox3.PasswordChar = '*';
             this.textBox3.Size = new System.Drawing.Size(251, 31);
             this.textBox3.TabIndex = 7;
             // 
@@ -183,12 +196,13 @@ namespace angelito
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1210, 750);
+            this.ClientSize = new System.Drawing.Size(1210, 948);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.rtb);
+            this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Elangelitomovil";
+            this.Text = "SSH Multi Comands by socteam";
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -212,6 +226,7 @@ namespace angelito
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox textBox3;
         private System.Windows.Forms.ListBox IPs;
+        private System.Windows.Forms.Label label5;
     }
 }
 
